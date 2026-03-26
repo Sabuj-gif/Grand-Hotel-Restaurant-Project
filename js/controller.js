@@ -68,9 +68,10 @@ class AppController {
         const lang = () => this.model.getLanguage();
 
         // Tipping changes
-        document.addEventListener('change', (e) => {
-            if (e.target.matches('#tip-select')) {
-                this.model.setTipRate(e.target.value);
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.tip-options button')) {
+                const rate = e.target.getAttribute('data-tip');
+                this.model.setTipRate(rate);
                 this.refreshCartView();
             }
         });

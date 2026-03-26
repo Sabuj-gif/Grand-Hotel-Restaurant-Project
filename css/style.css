@@ -743,11 +743,37 @@ main {
     font-size: 1.1rem;
 }
 
-.cart-tip-container select {
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
+.tip-options {
+    display: flex;
+    gap: 10px;
+}
+
+.tip-btn {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+    background: #fdfaf3;
+    color: var(--primary-dark);
     font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tip-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.tip-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.tip-btn:active {
+    transform: scale(0.95);
 }
 
 /* --- Filter & Categories --- */
