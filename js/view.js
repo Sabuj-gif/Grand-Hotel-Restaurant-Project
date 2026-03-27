@@ -361,7 +361,16 @@ class AppView {
 
         if (tipContainer) {
             tipContainer.style.display = 'flex';
-            document.getElementById('tip-select').value = tipRate;
+
+            const buttons = tipContainer.querySelectorAll('.tip-btn');
+            buttons.forEach(btn => {
+                const btnRate = parseFloat(btn.getAttribute('data-tip'));
+                if (btnRate === tipRate) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
         }
 
         const tipAmount = totalPrice * tipRate;
