@@ -25,6 +25,7 @@ const I18N_DICT = {
     btnCheckout: "Proceed to Checkout",
     vegetarian: "Vegetarian",
     vegan: "Vegan",
+    "no-onions": "No Onions",
     onions: "Contains Onions",
     "gluten-free": "Gluten-Free",
     "lactose-free": "Lactose-Free",
@@ -205,9 +206,9 @@ class AppView {
         } else if (activeCategory === 'desserts') {
             availableFilters = ['vegan', 'lactose-free', 'gluten-free'];
         } else if (activeCategory === 'all') {
-            availableFilters = ['vegan', 'vegetarian', 'lactose-free', 'gluten-free', 'onions', 'alcoholic', 'non-alcoholic'];
+            availableFilters = ['vegan', 'vegetarian', 'lactose-free', 'gluten-free', 'no-onions', 'alcoholic', 'non-alcoholic'];
         } else {
-            availableFilters = ['vegan', 'vegetarian', 'lactose-free', 'gluten-free', 'onions'];
+            availableFilters = ['vegan', 'vegetarian', 'lactose-free', 'gluten-free', 'no-onions'];
         }
 
         container.innerHTML = availableFilters.map(f => {
@@ -296,7 +297,12 @@ class AppView {
             if (activeFilters.length > 0) {
                 items = items.filter(dish => {
                     const dishDietary = dish.dietary || [];
-                    return activeFilters.every(filter => dishDietary.includes(filter));
+                    return activeFilters.every(filter => {
+                        if (filter === 'no-onions') {
+                            return !dishDietary.includes('onions');
+                        }
+                        return dishDietary.includes(filter);
+                    });
                 });
             }
 
@@ -344,7 +350,7 @@ class AppView {
             const itemEl = document.createElement('div');
             itemEl.className = 'cart-item';
             itemEl.innerHTML = `
-                <div class="cart-item-info">
+                <div class="cart-item-info" data-id="${item.id}" style="cursor: pointer;" title="Click to view details">
                     <h4>${item.name}</h4>
                     <p>Unit Price: ${priceStr}</p>
                 </div>

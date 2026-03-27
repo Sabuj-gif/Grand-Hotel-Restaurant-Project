@@ -166,6 +166,18 @@ class AppController {
                 }
             }
 
+            // View Dish Details from Cart
+            const cartItemInfoEl = e.target.closest('.cart-item-info');
+            if (cartItemInfoEl) {
+                const dishId = cartItemInfoEl.getAttribute('data-id');
+                if (dishId && Array.isArray(this.model.menuData)) {
+                    const fullDish = this.model.menuData.find(d => String(d.id) === String(dishId));
+                    if (fullDish) {
+                        this.view.openDishModal(fullDish, this.model.language);
+                    }
+                }
+            }
+
             // Close Dish Modal
             if (e.target.matches('#btnDishModalClose') || e.target.matches('#dishModalOverlay')) {
                 this.view.closeDishModal();
