@@ -298,9 +298,15 @@ class AppView {
                 items = items.filter(dish => {
                     const dishDietary = dish.dietary || [];
                     return activeFilters.every(filter => {
+                        
                         if (filter === 'no-onions') {
                             return !dishDietary.includes('onions');
                         }
+
+                        if (filter === 'vegetarian') {
+                            return dishDietary.includes('vegetarian') || dishDietary.includes('vegan'); 
+                        }
+                        
                         return dishDietary.includes(filter);
                     });
                 });
