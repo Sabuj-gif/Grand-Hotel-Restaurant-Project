@@ -21,7 +21,7 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     overflow-x: hidden;
-    padding-bottom: 80px; /* Space for bottom nav */
+    padding-bottom: 80px; /* Space for bottom nav bar */
 }
 
 h1, h2, h3, .title {
@@ -45,8 +45,10 @@ header.page-title {
     font-weight: 400;
     padding: 30px 20px 10px;
     letter-spacing: 2px;
-    color: #1a3636; /* Dark teal matching the screenshot */
+    color: #1a3636;
 }
+
+/* Home Page Styling */
 
 .experience-section {
     padding: 30px 20px;
@@ -70,6 +72,8 @@ main {
     margin: 0 auto;
     padding: 0 10px;
 }
+
+/* Menu Styling */
 
 .menu-section {
     padding: 20px 10px;
@@ -99,8 +103,10 @@ main {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 20px;
     padding: 10px 5px 20px;
-    justify-content: start; /* Locks items to the left firmly */
+    justify-content: start;
 }
+
+/* Food Card Styling */
 
 .card {
     border-radius: 16px;
@@ -174,7 +180,8 @@ main {
     transform: scale(0.95);
 }
 
-/* Bottom Navigation */
+/* Bottom Navigation Bar */
+
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -226,7 +233,8 @@ main {
     margin-bottom: 2px;
 }
 
-/* Cart Page Specifics */
+/* Cart Page Styling */
+
 .cart-container {
     padding: 20px;
     max-width: 800px;
@@ -347,7 +355,53 @@ main {
     font-style: italic;
 }
 
+/* Tip Buttons Styling */
+
+.cart-tip-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px dashed rgba(0,0,0,0.1);
+    font-size: 1.1rem;
+}
+
+.tip-options {
+    display: flex;
+    gap: 10px;
+}
+
+.tip-btn {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+    background: #fdfaf3;
+    color: var(--primary-dark);
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tip-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+.tip-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.tip-btn:active {
+    transform: scale(0.95);
+}
+
 /* Toast Notification */
+
 .toast {
     position: fixed;
     top: 20px;
@@ -371,6 +425,7 @@ main {
 }
 
 /* Service Button */
+
 .call-service-btn {
     position: fixed;
     bottom: 120px;
@@ -396,7 +451,8 @@ main {
     background-color: var(--primary-dark);
 }
 
-/* Service Modal Custom Popup */
+/* Service Modal Popup */
+
 .service-modal-overlay {
     position: fixed;
     top: 0;
@@ -490,7 +546,8 @@ main {
     color: white;
 }
 
-/* --- Dish Details Modal --- */
+/* Dish Description Modal Overlay */
+
 .dish-modal-overlay {
     position: fixed;
     top: 0; left: 0;
@@ -628,7 +685,7 @@ main {
     transform: translateY(-2px);
 }
 
-/* --- New Features --- */
+/* Hero Styling */
 
 .hero {
     background: linear-gradient(rgba(10, 10, 10, 0.7), rgba(20, 20, 20, 0.8)), url('images/hero-bg.jpg') center/cover;
@@ -681,8 +738,6 @@ main {
     line-height: 1.4;
 }
 
-/* Lang switcher removed */
-
 .constraints-bar {
     display: flex;
     flex-wrap: wrap;
@@ -705,6 +760,8 @@ main {
     font-style: italic;
     margin-bottom: 20px;
 }
+
+/* Drag and Drop Styling */
 
 .draggable-card {
     cursor: grab;
@@ -737,50 +794,8 @@ main {
     transform: scale(1.02);
 }
 
-.cart-tip-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 20px;
-    padding-top: 20px;
-    border-top: 1px dashed rgba(0,0,0,0.1);
-    font-size: 1.1rem;
-}
+/* Categories */
 
-.tip-options {
-    display: flex;
-    gap: 10px;
-}
-
-.tip-btn {
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: 1px solid var(--primary-color);
-    background: #fdfaf3;
-    color: var(--primary-dark);
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.tip-btn:hover {
-    background: var(--primary-color);
-    color: white;
-}
-
-.tip-btn.active {
-    background: var(--primary-color);
-    color: white;
-    border-color: var(--primary-color);
-}
-
-.tip-btn:active {
-    transform: scale(0.95);
-}
-
-/* --- Filter & Categories --- */
 .category-tabs {
     display: flex;
     overflow-x: auto;
@@ -812,6 +827,8 @@ main {
     background: var(--primary-color);
     color: white;
 }
+
+/* Filters */
 
 .filter-chips {
     display: flex;
@@ -848,7 +865,8 @@ main {
     border-radius: 10px;
 }
 
-/* --- Mobile Responsiveness --- */
+/* Mobile Responsiveness */
+
 @media (max-width: 550px) {
     .cart-item {
         flex-direction: column;
@@ -859,11 +877,11 @@ main {
     .cart-item-info {
         width: 100%;
         flex: none;
-        padding-right: 40px; /* Space for the absolute X button */
+        padding-right: 40px; 
     }
     
     .cart-item-info h4 {
-        white-space: normal; /* Let the full text wrap on mobile */
+        white-space: normal;
     }
     
     .cart-item-quantity {
@@ -889,6 +907,7 @@ main {
 }
 
 /* Checkout and Success Popups */
+
 .confirm-popup, .success-screen {
     position: fixed;
     top: 0;
