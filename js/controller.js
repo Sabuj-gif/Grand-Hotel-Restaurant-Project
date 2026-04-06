@@ -72,7 +72,7 @@ class AppController {
             if (e.target.matches('.tip-options button')) {
                 const rate = e.target.getAttribute('data-tip');
                 this.model.setTipRate(rate);
-                this.refreshCartView();
+                this.refreshCartView(); // Apply change
             }
         });
 
@@ -83,7 +83,7 @@ class AppController {
             const catTab = e.target.closest('.category-tab');
             if (catTab) {
                 this.currentCategory = catTab.getAttribute('data-category');
-                this.currentFilters = []; // Reset filters on category switch
+                this.currentFilters = []; // Resets filters on category switch
                 this.refreshMenuAndHomeView();
                 return;
             }
@@ -111,7 +111,7 @@ class AppController {
                 }
             }
 
-            // "Remove from Cart" button
+            // "Remove from Cart" button clicked
             if (e.target.matches('.remove-btn')) {
                 const index = e.target.getAttribute('data-index');
                 if (index !== null) {
@@ -120,7 +120,7 @@ class AppController {
                 }
             }
 
-            // "+" Button Context
+            // "+" Button 
             if (e.target.matches('.qty-plus')) {
                 const index = e.target.getAttribute('data-index');
                 if (index !== null) {
@@ -129,7 +129,7 @@ class AppController {
                 }
             }
 
-            // "-" Button Context
+            // "-" Button
             if (e.target.matches('.qty-minus')) {
                 const index = e.target.getAttribute('data-index');
                 if (index !== null) {
@@ -144,19 +144,18 @@ class AppController {
                 this.view.showServiceModal();
             }
 
-            // Modal Controls
+            // Confirm Service Request
             if (e.target.matches('#btnConfirmService')) {
                 this.view.hideServiceModal();
                 this.view.showToast("toastSrv", lang());
             }
-            // Close Service Modal
+
+            // Close Service Request
             if (e.target.matches('#btnCancelService') || e.target.matches('#serviceModalOverlay')) {
                 this.view.hideServiceModal();
             }
-
-            // --- Dish Details Modal Event Logics ---
             
-            // View Dish Details (clicking a card, but not the add button)
+            // View Dish Description Overlay (clicking a card, but not the add button)
             const cardEl = e.target.closest('.card');
             if (cardEl && !e.target.closest('.add-button')) {
                 const dishStr = cardEl.getAttribute('data-dish');
@@ -166,9 +165,7 @@ class AppController {
                 }
             }
 
-                // -------------------------------
             // Checkout Button Logic
-            // -------------------------------
 
             // Open confirmation popup
             if (e.target.matches('#checkout-btn')) {
@@ -191,7 +188,6 @@ class AppController {
                 if (successScreen) successScreen.style.display = "flex";
 
                 this.model.clearCart?.();
-                //localStorage.removeItem("cart");
 
                 this.refreshCartView();
 
@@ -202,7 +198,7 @@ class AppController {
             }
 
 
-            // View Dish Details from Cart
+            // View Dish Details from Cart --> Clicking on a Cart Item
             const cartItemInfoEl = e.target.closest('.cart-item-info');
             if (cartItemInfoEl) {
                 const dishId = cartItemInfoEl.getAttribute('data-id');
@@ -228,11 +224,8 @@ class AppController {
                 this.view.closeDishModal(); // Automatically close overlay to keep user flow fast
             }
         });
-
-
-        // ---------------------------------
+        
         // Drag and Drop Logic to Cart Nav Link
-        // ---------------------------------
         document.addEventListener('dragstart', (e) => {
             if (e.target.closest('.draggable-card')) {
                 const card = e.target.closest('.draggable-card');
@@ -275,7 +268,7 @@ class AppController {
         this.model.addToCart(dish);
         this.refreshCartView();
         
-        // Add a small vibration/shake animation to the cart button to signify addition
+        // A small vibration/shake animation to the cart button to signify addition
         const cartLink = document.getElementById('cart-nav-link');
         if(cartLink) {
             cartLink.style.transform = "scale(1.2)";

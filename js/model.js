@@ -89,10 +89,11 @@ class MenuModel {
     getLanguage() {
         return this.language;
     }
-        clearCart() {
-    this.cart = [];
-    this.tipRate = 0;
-    this.saveCart();
+
+    clearCart() {
+        this.cart = [];
+        this.tipRate = 0;
+        this.saveCart();
     }
 }
 
