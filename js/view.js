@@ -17,7 +17,7 @@ const I18N_DICT = {
     srvReqText: "Do you require assistance from our staff?",
     btnCancel: "Cancel",
     btnCall: "Call Waiter",
-    toastSrv: "Waitstaff is on the way!",
+    toastSrv: "Wait! staff is on the way!",
     toastAdd: "added to cart",
     emptyCart: "Your cart is empty.",
     lblTip: "Add Tip:",
@@ -84,7 +84,7 @@ class AppView {
     }
 
     initDishModal() {
-        if(document.getElementById('dishModalOverlay')) return;
+        if (document.getElementById('dishModalOverlay')) return;
         const modalHtml = `
             <div class="dish-modal-overlay" id="dishModalOverlay">
                 <div class="dish-modal" id="dishModalContainer">
@@ -98,7 +98,7 @@ class AppView {
     openDishModal(dish, lang) {
         const overlay = document.getElementById('dishModalOverlay');
         const container = document.getElementById('dishModalContainer');
-        if(!overlay || !container) return;
+        if (!overlay || !container) return;
 
         let constraintsHtml = '';
         if (dish.dietary && Array.isArray(dish.dietary)) {
@@ -113,7 +113,7 @@ class AppView {
                 if (c === 'alcoholic') icon = '🍷';
                 if (c === 'non-alcoholic') icon = '🧃';
                 if (c === 'onions') icon = '🧅';
-                if (c === 'halal') icon = '✔'; 
+                if (c === 'halal') icon = '✔';
                 constraintsHtml += `<span class="badge" title="${cTitle}">${icon} ${cTitle}</span>`;
             });
             constraintsHtml += '</div>';
@@ -151,7 +151,7 @@ class AppView {
 
     closeDishModal() {
         const overlay = document.getElementById('dishModalOverlay');
-        if(overlay) overlay.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
     }
 
     renderHomeData(menuDataArray, lang) {
@@ -238,7 +238,7 @@ class AppView {
                 if (c === 'alcoholic') icon = '🍷';
                 if (c === 'non-alcoholic') icon = '🧃';
                 if (c === 'onions') icon = '🧅';
-                if (c === 'halal') icon = '✔'; 
+                if (c === 'halal') icon = '✔';
                 constraintsHtml += `<span class="badge" title="${cTitle}">${icon} ${cTitle}</span>`;
             });
             constraintsHtml += '</div>';
@@ -301,17 +301,17 @@ class AppView {
                 items = items.filter(dish => {
                     const dishDietary = dish.dietary || [];
                     return activeFilters.every(filter => {
-                        
+
                         if (filter === 'no-onions') {
                             return !dishDietary.includes('onions');
                         }
 
                         if (filter === 'vegetarian') {
-                            return dishDietary.includes('vegetarian') || dishDietary.includes('vegan'); 
+                            return dishDietary.includes('vegetarian') || dishDietary.includes('vegan');
                         }
 
                         if (filter === 'halal') {
-                            return dishDietary.includes(filter) || dish.dietary.includes('non-alcoholic'); 
+                            return dishDietary.includes(filter) || dish.dietary.includes('non-alcoholic');
                         }
 
                         return dishDietary.includes(filter);
