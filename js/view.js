@@ -63,6 +63,7 @@ class AppView {
         document.body.className = `lang-${lang}`;
     }
 
+    /* Service Popup */
     initServiceModal() {
         if (document.getElementById('serviceModalOverlay')) return;
         const modalHtml = `
@@ -83,6 +84,7 @@ class AppView {
         document.body.insertAdjacentHTML('beforeend', modalHtml);
     }
 
+    /* Dish Description Overlay */
     initDishModal() {
         if (document.getElementById('dishModalOverlay')) return;
         const modalHtml = `
@@ -101,6 +103,7 @@ class AppView {
         if (!overlay || !container) return;
 
         let constraintsHtml = '';
+
         if (dish.dietary && Array.isArray(dish.dietary)) {
             constraintsHtml = '<div class="constraints-bar" style="margin-bottom:0;">';
             dish.dietary.forEach(c => {
@@ -126,6 +129,7 @@ class AppView {
         if (dish.image) {
             imageHtml = `<img src="${dish.image}" class="dish-modal-img" alt="${dish.name}" onerror="this.style.display='none'">`;
         } else {
+            // Fallback in case there is no image 
             imageHtml = `<div class="dish-modal-img" style="background: linear-gradient(45deg, #f0ece1, #e3ded1);"></div>`;
         }
 
@@ -154,6 +158,7 @@ class AppView {
         if (overlay) overlay.classList.remove('active');
     }
 
+    /* Home Page View */
     renderHomeData(menuDataArray, lang) {
         const trendingContainer = document.getElementById('trending-container');
         if (trendingContainer && Array.isArray(menuDataArray)) {
@@ -251,7 +256,6 @@ class AppView {
 
         let imageHtml = '';
         if (dish.image) {
-            // Include an empty box or image tag for the aesthetic if image links naturally fail
             imageHtml = `<div class="card-image-placeholder" style="background-image: url('${dish.image}'), linear-gradient(45deg, #f0ece1, #e3ded1);"></div>`;
         }
 
@@ -275,6 +279,7 @@ class AppView {
         return card;
     }
 
+    /* Menu Page View */
     renderMenu(menuDataArray, lang, category, activeFilters) {
         const container = document.getElementById('menu-sections-container');
         if (!container) return;
@@ -307,11 +312,13 @@ class AppView {
                         }
 
                         if (filter === 'vegetarian') {
-                            return dishDietary.includes('vegetarian') || dishDietary.includes('vegan');
+                            // All vegan dishes are also vegetarian
+                            return dishDietary.includes('vegetarian') || dishDietary.includes('vegan'); 
                         }
 
                         if (filter === 'halal') {
-                            return dishDietary.includes(filter) || dish.dietary.includes('non-alcoholic');
+                            // Handles alcoholic drinks seperately to avoid needing the halal tag on all non-alcoholic drinks
+                            return dishDietary.includes(filter) || dish.dietary.includes('non-alcoholic'); 
                         }
 
                         return dishDietary.includes(filter);
@@ -341,6 +348,8 @@ class AppView {
             container.appendChild(sectionEl);
         });
     }
+
+    /* Cart Page View */
 
     renderCart(cartData, totalPrice, tipRate, lang) {
         const cartContainer = document.getElementById('cart-content');
@@ -406,11 +415,12 @@ class AppView {
             // Calculate total quantity of items instead of just array length
             const totalCount = cartData.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
-            // Hardcoded "Cart" since we removed translation UI
             const prefix = "Cart";
             badge.innerText = totalCount > 0 ? `${prefix} (${totalCount})` : prefix;
         }
     }
+
+    /* Toast View */
 
     showToast(messageKey, lang, dynamicInsert = '') {
         const toast = document.getElementById('toast');

@@ -9,11 +9,12 @@
 </head>
 <body>
 
-<header class="page-title" data-i18n="navCart">
-    Cart
-</header>
+<!-- Page Header -->
+<header class="page-title" data-i18n="navCart">Cart</header>
 
 <main class="cart-container">
+
+    <!-- Cart Items Display -->
     <div id="cart-content"></div>
     <div class="cart-tip-container" id="cart-tip-container" style="display: none;">
         <span data-i18n="lblTip">Add Tip:</span>
@@ -24,11 +25,13 @@
         </div>
     </div>
     
+    <!-- Total Price Section -->
     <div class="cart-total" id="cart-total-container" style="display: none;">
         <span data-i18n="lblTotal">Total:</span>
         <span id="cart-total-price">0€</span>
     </div>
 
+    <!-- Checkout Button -->
     <button class="checkout-btn" id="checkout-btn" data-i18n="btnCheckout" style="display: none;">Proceed to Checkout</button>
 </main>
 
@@ -63,7 +66,7 @@
     </div>
 </div>
 
-<!-- order confirmed -->
+<!-- Order Confirmed Popup -->
  <div id="success-screen" class="success-screen">
     <div class="success-box">
         <div class="success-icon">✨</div>
